@@ -42,7 +42,29 @@
 		lockScroll = false, xscroll, yscroll,
 		isAnimating = false,
 		menuCtrl = document.getElementById('menu-toggle'),
-		menuCloseCtrl = sidebarEl.querySelector('.close-button');
+		//menuCloseCtrl = sidebarEl.querySelector('.close-button');
+
+	/* + new */
+	var GridItemModel = Backbone.Model.extend({});
+
+	var GridCollection = Backbone.Collection.extend({model: GridItemModel});
+
+	var GridView = Backbone.View.extend({
+		el: "#grid",
+
+		events: "",
+
+		initialize: function(){
+			//this.collection = 
+
+		},
+
+		render: function(){
+
+		}
+	});
+
+	/* - new */
 
 	/**
 	 * gets the viewport width and height
@@ -114,11 +136,13 @@
 			}
 		});
 
+		/*
 		menuCloseCtrl.addEventListener('click', function() {
 			if( classie.has(sidebarEl, 'sidebar--open') ) {
 				classie.remove(sidebarEl, 'sidebar--open');
 			}
 		});
+		*/
 	}
 
 	function loadContent(item) {
