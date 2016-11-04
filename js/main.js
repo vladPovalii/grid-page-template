@@ -41,8 +41,8 @@
 		current = -1,
 		lockScroll = false, xscroll, yscroll,
 		isAnimating = false,
-		menuCtrl = document.getElementById('menu-toggle'),
-		//menuCloseCtrl = sidebarEl.querySelector('.close-button');
+		//menuCloseCtrl = sidebarEl.querySelector('.close-button'),
+		menuCtrl = document.getElementById('menu-toggle');
 
 	/* + new */
 	var GridItemModel = Backbone.Model.extend({});
@@ -50,7 +50,7 @@
 	var GridCollection = Backbone.Collection.extend({model: GridItemModel});
 
 	var GridView = Backbone.View.extend({
-		el: "#grid",
+		el: ".grid",
 
 		events: "",
 
@@ -64,6 +64,20 @@
 		}
 	});
 
+	var GridItemView = Backbone.View.extend({
+		tagName: "div",
+		className: "grid__item",
+
+		events: "",
+
+		initialize: function(){
+
+		},
+
+		render: function(){
+
+		}
+	});
 	/* - new */
 
 	/**
@@ -88,6 +102,8 @@
 
 	function init() {
 		initEvents();
+		var gridView = new GridView();
+		var gridItemView = new GridItemView();
 	}
 
 	function initEvents() {
