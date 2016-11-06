@@ -40,27 +40,7 @@ define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($,
 		},
 
 		/*
-		var GridItemModel = Backbone.Model.extend({});
-
 		var GridCollection = Backbone.Collection.extend({model: GridItemModel});
-
-		var GridView = Backbone.View.extend({
-			el: ".grid",
-
-			events: "",
-
-			initialize: function(){
-			},
-
-			render: function(){
-
-			},
-
-			addNew: function(){
-			}
-		});
-
-
 		*/
 
 		// gets the viewport width and height
