@@ -35,7 +35,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-app.get('/news', function(req, res) {
+app.get('/api/news', function(req, res) {
   news.find(function(err, docs) {
     docs.forEach(function(item) {
       console.log("Received a GET request for _id: " + item._id);
