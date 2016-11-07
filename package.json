@@ -1,0 +1,13 @@
+{
+  "name": "sample-blog-grid",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "~4.13.4",
+    "mongoose": "^4.6.6"
+  }
+}
