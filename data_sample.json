@@ -1,0 +1,94 @@
+/* boilerplate for http://www.json-generator.com/
+[
+  '{{repeat(7)}}',
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+    title: '{{lorem(1, "sentences")}}',
+    image: 'img/authors/4.png',
+    categories: [
+      '{{repeat(random(1,2))}}',
+      '{{lorem(1, "words")}}'
+    ],
+    //first param - new Date - 1 month(approx)
+    createdOnFormated: '{{date(new Date(new Date() - 2592000000), new Date(), "dd MMMM YYYY")}}'
+  }
+]
+*/
+[
+  {
+    "_id": "58209ffca73741e3d879da14",
+    "index": 0,
+    "title": "Anim ullamco do magna cupidatat.",
+    "image": "img/authors/1.png",
+    "categories": [
+      "excepteur"
+    ],
+    "createdOnFormated": "20 October 2016"
+  },
+  {
+    "_id": "58209ffc4778b8d3dec976c2",
+    "index": 1,
+    "title": "Nulla ullamco cillum officia est.",
+    "image": "img/authors/2.png",
+    "categories": [
+      "esse",
+      "ex"
+    ],
+    "createdOnFormated": "31 October 2016"
+  },
+  {
+    "_id": "58209ffc89f04e60783f305b",
+    "index": 2,
+    "title": "Cillum consectetur laborum.",
+    "image": "img/authors/3.png",
+    "categories": [
+      "laboris"
+    ],
+    "createdOnFormated": "02 November 2016"
+  },
+  {
+    "_id": "58209ffc7c5d47e3b17f515c",
+    "index": 3,
+    "title": "Laboris aliquip adipisicing.",
+    "image": "img/authors/4.png",
+    "categories": [
+      "ipsum",
+      "fugiat"
+    ],
+    "createdOnFormated": "30 October 2016"
+  },
+  {
+    "_id": "58209ffc519a511afa158cf4",
+    "index": 4,
+    "title": "Fugiat anim est aliquip enim.",
+    "image": "img/authors/5.png",
+    "categories": [
+      "eiusmod",
+      "voluptate"
+    ],
+    "createdOnFormated": "05 November 2016"
+  },
+  {
+    "_id": "58209ffc7364b9e17bdc1bc3",
+    "index": 5,
+    "title": "Sint do pariatur nisi occaecat elit.",
+    "image": "img/authors/6.png",
+    "categories": [
+      "eiusmod",
+      "ad"
+    ],
+    "createdOnFormated": "01 November 2016"
+  },
+  {
+    "_id": "58209ffc06638d19315922e7",
+    "index": 6,
+    "title": "Esse ut pariatur quis sit.",
+    "image": "img/authors/7.png",
+    "categories": [
+      "culpa",
+      "dolore"
+    ],
+    "createdOnFormated": "10 October 2016"
+  }
+]
