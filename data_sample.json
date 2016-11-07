@@ -24,7 +24,7 @@
     "categories": [
       "excepteur"
     ],
-    "createdOnFormated": "20 October 2016"
+    "createdOnFormatted": "20 October 2016"
   },
   {
     "_id": "58209ffc4778b8d3dec976c2",
@@ -35,7 +35,7 @@
       "esse",
       "ex"
     ],
-    "createdOnFormated": "31 October 2016"
+    "createdOnFormatted": "31 October 2016"
   },
   {
     "_id": "58209ffc89f04e60783f305b",
@@ -45,7 +45,7 @@
     "categories": [
       "laboris"
     ],
-    "createdOnFormated": "02 November 2016"
+    "createdOnFormatted": "02 November 2016"
   },
   {
     "_id": "58209ffc7c5d47e3b17f515c",
@@ -56,7 +56,7 @@
       "ipsum",
       "fugiat"
     ],
-    "createdOnFormated": "30 October 2016"
+    "createdOnFormatted": "30 October 2016"
   },
   {
     "_id": "58209ffc519a511afa158cf4",
@@ -67,7 +67,7 @@
       "eiusmod",
       "voluptate"
     ],
-    "createdOnFormated": "05 November 2016"
+    "createdOnFormatted": "05 November 2016"
   },
   {
     "_id": "58209ffc7364b9e17bdc1bc3",
@@ -78,7 +78,7 @@
       "eiusmod",
       "ad"
     ],
-    "createdOnFormated": "01 November 2016"
+    "createdOnFormatted": "01 November 2016"
   },
   {
     "_id": "58209ffc06638d19315922e7",
@@ -89,6 +89,6 @@
       "culpa",
       "dolore"
     ],
-    "createdOnFormated": "10 October 2016"
+    "createdOnFormatted": "10 October 2016"
   }
 ]
