@@ -1,6 +1,7 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    path = require('path');
 
 // get cfg with connection information
 var env = process.env.NODE_ENV || 'development';
@@ -35,7 +36,15 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public', 'index.html'));
+});
+
 app.get('/news', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public', 'news.html'));
+});
+
+app.get('api/news', function(req, res) {
   news.find(function(err, docs) {
     docs.forEach(function(item) {
       console.log("Received a GET request for _id: " + item._id);
@@ -43,6 +52,7 @@ app.get('/news', function(req, res) {
     res.send(docs);
   });
 });
+
 
 var port = 3000;
 
