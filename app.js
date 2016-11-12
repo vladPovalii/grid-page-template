@@ -44,15 +44,15 @@ app.get('/news', function(req, res) {
   res.sendFile(path.join(__dirname, '/public', 'news.html'));
 });
 
-app.get('api/news', function(req, res) {
+app.get('/api/news', function(req, res) {
+  console.log("api reached");
   news.find(function(err, docs) {
     docs.forEach(function(item) {
       console.log("Received a GET request for _id: " + item._id);
     })
-    res.send(docs);
+    res.json(docs);
   });
 });
-
 
 var port = 3000;
 
