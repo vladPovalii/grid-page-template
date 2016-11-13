@@ -36,6 +36,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
+<<<<<<< HEAD
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/public', 'index.html'));
 });
@@ -46,6 +47,9 @@ app.get('/news', function(req, res) {
 
 app.get('/api/news', function(req, res) {
   console.log("api reached");
+=======
+app.get('/api/news', function(req, res) {
+>>>>>>> origin/master
   news.find(function(err, docs) {
     docs.forEach(function(item) {
       console.log("Received a GET request for _id: " + item._id);
