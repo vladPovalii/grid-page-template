@@ -106,7 +106,7 @@ define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($,
 
 			this.closeCtrl.addEventListener("click", function() {
 				// hide content
-				this.hideContent();
+				view.hideContent();
 			});
 
 			// keyboard esc - hide content
