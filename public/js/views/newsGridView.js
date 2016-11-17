@@ -1,6 +1,6 @@
 
 define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($, _, Backbone, classie, Modernizr){
-	var AppView = Backbone.View.extend({
+	var NewsGridView = Backbone.View.extend({
 
 		bodyEl: document.body,
 		docElem: window.document.documentElement,
@@ -221,5 +221,5 @@ define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($,
 
 	});
 
-	return AppView;
+	return NewsGridView;
 });
