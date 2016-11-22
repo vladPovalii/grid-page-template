@@ -24,8 +24,8 @@ var NewsSchema = new Schema({
   index: {type: Number},
   title: {type: String},
   image: {type: String},
-  date: { type: Date, default: Date.now },
-  createdOnFormatted: Buffer
+  date: {type: Date, default: new Date()},
+  createdOnFormatted: {type: String}
 });
 
 mongoose.model('news', NewsSchema);
@@ -37,11 +37,15 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/public', 'index.html'));
+  res.sendFile(path.join(__dirname, '/public/html', 'index.html'));
 });
 
 app.get('/news', function(req, res) {
-  res.sendFile(path.join(__dirname, '/public', 'news.html'));
+  res.sendFile(path.join(__dirname, '/public/html', 'news.html'));
+});
+
+app.get('/login', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/html', 'login.html'));
 });
 
 app.get('/api/news', function(req, res) {
