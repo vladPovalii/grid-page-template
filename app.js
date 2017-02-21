@@ -29,7 +29,6 @@ var NewsSchema = new Schema({
 });
 mongoose.model('news', NewsSchema);
 var news = mongoose.model('news');
-//
 
 var app = express(),
     csrfProtection = csrf({cookie: true});

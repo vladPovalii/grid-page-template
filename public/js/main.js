@@ -20,6 +20,8 @@ require.config({
 	}
 });
 
-require(['views/app'], function(AppView){
-  var app_view = new AppView();
+
+
+require(['../js/views/main' + location.pathname], function(AppView){
+  var app = new AppView();
 });
