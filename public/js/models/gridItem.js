@@ -1,1 +1,0 @@
-var GridItemModel = Backbone.Model.extend({});

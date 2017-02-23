@@ -1,4 +1,4 @@
-var GridItemView = Backbone.View.extend({
+var ArticleView = Backbone.View.extend({
 	tagName: "div",
 
 	className: "grid__item",
