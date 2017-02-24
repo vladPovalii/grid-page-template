@@ -11,5 +11,5 @@ define([
     model: Article
   });
 
-  return NewsCollection;
+  return new NewsCollection();
 });
