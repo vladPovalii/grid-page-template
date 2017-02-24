@@ -1,1 +1,15 @@
-var NewsCollection = Backbone.Collection.extend({model: GridItemModel});
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'models/article'
+], function($, _, Backbone, Article){
+  var NewsCollection = Backbone.Collection.extend({
+    url: function () {
+      return '/api/news'
+    },
+    model: Article
+  });
+
+  return NewsCollection;
+});
