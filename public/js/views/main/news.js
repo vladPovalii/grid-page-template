@@ -11,7 +11,7 @@ define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($,
 		lockScroll : false,
 		xscroll : false,
 		yscroll : false,
-		isAnimating : false,
+		//isAnimating : false, -> moved to article View
 		menuCtrl : document.getElementById("menu-toggle"),
 		// transition end event name
 		transEndEventNames: { 
@@ -182,7 +182,7 @@ define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($,
 			var gridItem = this.gridItems[this.current], 
 				contentItem = this.contentItems[this.current];
 
-			classie.remove(this.contentItem, "content__item--show");
+			classie.remove(contentItem, "content__item--show");
 			classie.remove(this.contentItemsContainer, "content--show");
 			classie.remove(this.closeCtrl, "close-button--show");
 			classie.remove(this.bodyEl, "view-single");
