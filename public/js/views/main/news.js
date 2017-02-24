@@ -1,11 +1,12 @@
 
-define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($, _, Backbone, classie, Modernizr){
+define(["jquery", "underscore", "backbone", "classie", "Modernizr", "collections/news", "views/article"],
+function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
 	var NewsGridView = Backbone.View.extend({
 
+		el: "#theGrid",
 		bodyEl: document.body,
 		docElem: window.document.documentElement,
 		support: {transitions: Modernizr.csstransitions},
-		gridEl : document.getElementById("theGrid"),
 		sidebarEl : document.getElementById("theSidebar"),
 		current : -1,
 		lockScroll : false,
@@ -70,16 +71,26 @@ define(["jquery", "underscore", "backbone", "classie", "Modernizr"], function($,
 			// bind all methods
 
 			// initialize of selectors
-			this.gridItemsContainer = this.gridEl.querySelector("section.grid");
-			this.contentItemsContainer = this.gridEl.querySelector("section.content");
+			this.gridItemsContainer = this.el.querySelector("section.grid");
+			this.contentItemsContainer = this.el.querySelector("section.content");
 			this.gridItems = this.gridItemsContainer.querySelectorAll(".grid__item");
 			this.contentItems = this.contentItemsContainer.querySelectorAll(".content__item");
 			this.closeCtrl = this.contentItemsContainer.querySelector(".close-button");
 			this.transEndEventName = this.transEndEventNames[Modernizr.prefixed("transition")];
 
 			this.initEvents();
-			//var gridView = new GridView();
-			//var gridItemView = new GridItemView();
+
+			// after refactoring
+			this.listenTo(newsCollection, "add", this.addOne);
+
+			newsCollection.fetch();	
+
+		},
+		// Add a single article item to the grid by creating a view for it, and
+		// appending its element.
+		addOne: function(article) {
+			var view = new ArticleView({model: article});
+			$(this.gridItems).last().after(view.render().el);
 		},
 
 		initEvents: function() {
