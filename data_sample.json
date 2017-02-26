@@ -10,6 +10,11 @@
       '{{repeat(random(1,2))}}',
       '{{lorem(1, "words")}}'
     ],
+    content: '{{lorem(2, "paragraphs")}}',
+    author: 'Unknown author',
+    readingTime: '{{integer(3,10)}}',
+    commentsCount: 0,
+    favoritesCount: 0,
     //first param - new Date - 1 month(approx)
     createdOnFormated: '{{date(new Date(new Date() - 2592000000), new Date(), "dd MMMM YYYY")}}'
   }
@@ -17,78 +22,112 @@
 */
 [
   {
-    "_id": "58209ffca73741e3d879da14",
+    "_id": "58b32a31f01b6643040c8dfe",
     "index": 0,
-    "title": "Anim ullamco do magna cupidatat.",
-    "image": "img/authors/1.png",
-    "categories": [
-      "excepteur"
-    ],
-    "createdOnFormatted": "20 October 2016"
-  },
-  {
-    "_id": "58209ffc4778b8d3dec976c2",
-    "index": 1,
-    "title": "Nulla ullamco cillum officia est.",
-    "image": "img/authors/2.png",
-    "categories": [
-      "esse",
-      "ex"
-    ],
-    "createdOnFormatted": "31 October 2016"
-  },
-  {
-    "_id": "58209ffc89f04e60783f305b",
-    "index": 2,
-    "title": "Cillum consectetur laborum.",
-    "image": "img/authors/3.png",
-    "categories": [
-      "laboris"
-    ],
-    "createdOnFormatted": "02 November 2016"
-  },
-  {
-    "_id": "58209ffc7c5d47e3b17f515c",
-    "index": 3,
-    "title": "Laboris aliquip adipisicing.",
+    "title": "In pariatur fugiat cupidatat ipsum enim exercitation consectetur ex nostrud eiusmod Lorem culpa aliqua ut.",
     "image": "img/authors/4.png",
     "categories": [
-      "ipsum",
-      "fugiat"
+      "aliqua",
+      "est"
     ],
-    "createdOnFormatted": "30 October 2016"
+    "content": "Reprehenderit nulla nisi exercitation cupidatat dolore duis mollit irure ipsum aliqua excepteur proident. Aliquip amet amet magna consectetur nulla duis. Consectetur proident id minim nostrud sunt adipisicing culpa. Proident proident ad proident cupidatat sunt proident sit nostrud velit cupidatat ex est esse. Minim est velit aute ipsum cupidatat culpa fugiat laboris incididunt. Ea pariatur pariatur ullamco eiusmod et esse aliquip velit excepteur. Et labore est sit do enim duis.\r\nCillum mollit sit elit culpa deserunt esse sunt ex anim fugiat. Ullamco officia consequat Lorem anim eiusmod aute exercitation. Veniam mollit culpa aliqua ipsum ipsum nisi.\r\n",
+    "author": "Unknown author",
+    "readingTime": 10,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "15 February 2017"
   },
   {
-    "_id": "58209ffc519a511afa158cf4",
+    "_id": "58b32a319fc265ecd4de21fd",
+    "index": 1,
+    "title": "Fugiat voluptate non qui nisi duis.",
+    "image": "img/authors/4.png",
+    "categories": [
+      "aute",
+      "laborum"
+    ],
+    "content": "Pariatur sit do officia sint nulla consequat id aliquip in. Et fugiat et est labore nisi incididunt labore ullamco elit. Est sit consequat cillum elit reprehenderit proident ut incididunt magna elit. Commodo ad voluptate irure amet quis anim aute ullamco consequat id sit.\r\nMinim mollit ullamco tempor quis ad exercitation cupidatat sint velit aliquip quis enim ea pariatur. Ipsum ad aliqua ipsum sit reprehenderit esse et ad officia eu ad velit nulla quis. Duis non ullamco reprehenderit cupidatat ullamco. Incididunt eu magna quis exercitation tempor ipsum qui. Ad eu in cupidatat proident ea amet nisi enim aute et reprehenderit.\r\n",
+    "author": "Unknown author",
+    "readingTime": 5,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "15 February 2017"
+  },
+  {
+    "_id": "58b32a31321b6e2bf026f477",
+    "index": 2,
+    "title": "Exercitation ea consequat mollit occaecat enim laboris laboris occaecat elit tempor do nisi incididunt.",
+    "image": "img/authors/4.png",
+    "categories": [
+      "elit"
+    ],
+    "content": "Nulla nostrud ea cupidatat ad ex incididunt. Ad excepteur ea non id occaecat eu. Nostrud aliqua aliqua laborum exercitation laboris sunt elit mollit. Qui nulla ex aliquip aliquip fugiat id quis nisi consequat veniam. Est elit reprehenderit duis magna et duis nostrud adipisicing eu deserunt. Labore reprehenderit aliqua non occaecat dolore proident occaecat sunt incididunt deserunt eiusmod fugiat. Laborum duis cillum fugiat ipsum voluptate ex do veniam consectetur voluptate aliquip anim.\r\nQui reprehenderit in non esse magna ut. Pariatur consectetur aute esse ut sit. Reprehenderit sint proident excepteur Lorem reprehenderit nostrud voluptate irure anim exercitation commodo tempor sit sint. Minim tempor velit commodo officia deserunt consequat irure et incididunt consectetur labore. Culpa consectetur proident aute cillum nulla pariatur reprehenderit minim exercitation ullamco. Fugiat ad mollit officia reprehenderit amet nostrud. Ad excepteur occaecat magna sunt sint qui qui occaecat culpa non.\r\n",
+    "author": "Unknown author",
+    "readingTime": 5,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "11 February 2017"
+  },
+  {
+    "_id": "58b32a31f565ec855c847982",
+    "index": 3,
+    "title": "Ea quis non occaecat velit aliqua reprehenderit duis.",
+    "image": "img/authors/4.png",
+    "categories": [
+      "consequat",
+      "excepteur"
+    ],
+    "content": "Pariatur exercitation veniam magna in occaecat. Occaecat ea deserunt id et culpa ex aliquip velit cillum eu reprehenderit nulla anim sit. Exercitation fugiat sit ullamco dolore deserunt consectetur ex Lorem esse veniam id nostrud. Exercitation ullamco ipsum proident nulla consectetur ullamco pariatur culpa.\r\nQui occaecat labore incididunt est aliquip esse sit velit excepteur. Aute in enim culpa nisi irure nisi. Sunt Lorem qui qui enim ad incididunt laborum voluptate veniam exercitation consectetur. Aliquip occaecat officia consequat Lorem Lorem labore sint. Labore officia pariatur in non pariatur pariatur sit exercitation id ea non reprehenderit commodo. Eiusmod anim eiusmod magna voluptate dolor sunt dolor labore nulla ut.\r\n",
+    "author": "Unknown author",
+    "readingTime": 7,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "21 February 2017"
+  },
+  {
+    "_id": "58b32a317daeadd7458dc23e",
     "index": 4,
-    "title": "Fugiat anim est aliquip enim.",
-    "image": "img/authors/5.png",
+    "title": "Do enim voluptate laboris enim consectetur ex incididunt adipisicing incididunt ullamco.",
+    "image": "img/authors/4.png",
     "categories": [
       "eiusmod",
-      "voluptate"
+      "mollit"
     ],
-    "createdOnFormatted": "05 November 2016"
+    "content": "Mollit ipsum proident tempor commodo laborum ullamco Lorem ut elit qui ut cupidatat. Culpa pariatur labore aliqua amet consequat elit est reprehenderit adipisicing aliqua quis ut. Aute adipisicing minim fugiat adipisicing aliqua laborum officia et. Cupidatat et excepteur et aliqua. Aliquip ipsum irure incididunt est excepteur proident irure ullamco laboris quis nulla esse. Dolore laborum do ullamco labore commodo sunt nisi ipsum ullamco ea.\r\nCupidatat officia reprehenderit pariatur ullamco deserunt quis ullamco esse proident tempor incididunt. Ullamco nisi nostrud non sint excepteur tempor occaecat mollit fugiat sint. Fugiat tempor ipsum id cillum excepteur anim reprehenderit dolore fugiat dolor id tempor dolore.\r\n",
+    "author": "Unknown author",
+    "readingTime": 9,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "12 February 2017"
   },
   {
-    "_id": "58209ffc7364b9e17bdc1bc3",
+    "_id": "58b32a31c61d14cee9a1c3ed",
     "index": 5,
-    "title": "Sint do pariatur nisi occaecat elit.",
-    "image": "img/authors/6.png",
+    "title": "Mollit velit pariatur excepteur proident aliquip elit deserunt sunt.",
+    "image": "img/authors/4.png",
     "categories": [
-      "eiusmod",
-      "ad"
+      "tempor"
     ],
-    "createdOnFormatted": "01 November 2016"
+    "content": "Quis deserunt laborum tempor proident officia magna dolore duis sit consequat mollit cillum ex. Incididunt sint veniam cupidatat officia cupidatat aliquip quis veniam ad aliqua consectetur Lorem labore id. Laboris duis cupidatat ex duis pariatur est cupidatat ad anim. Voluptate labore aute labore et cillum tempor est.\r\nExercitation ad esse ullamco dolore exercitation eu exercitation est nostrud qui ullamco dolore dolore. Anim anim voluptate reprehenderit deserunt eiusmod et dolore cillum dolore dolor reprehenderit commodo. Incididunt ad deserunt cupidatat incididunt. Ipsum labore aute ipsum ad in nulla cupidatat duis amet nisi mollit. Laboris dolor nostrud aliqua aute eiusmod sunt laborum duis. Ad non ullamco est et pariatur ad dolore pariatur est magna excepteur. Deserunt labore enim incididunt aute consectetur mollit voluptate ipsum aliquip dolor elit.\r\n",
+    "author": "Unknown author",
+    "readingTime": 9,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "30 January 2017"
   },
   {
-    "_id": "58209ffc06638d19315922e7",
+    "_id": "58b32a31cb354a801c2b728f",
     "index": 6,
-    "title": "Esse ut pariatur quis sit.",
-    "image": "img/authors/7.png",
+    "title": "Officia laboris sunt eiusmod nostrud voluptate deserunt non pariatur commodo excepteur amet ipsum aute.",
+    "image": "img/authors/4.png",
     "categories": [
-      "culpa",
-      "dolore"
+      "labore"
     ],
-    "createdOnFormatted": "10 October 2016"
+    "content": "Quis mollit magna sunt ad amet labore voluptate cupidatat ad aliquip exercitation incididunt laborum. Minim Lorem velit id proident elit aliquip sint do excepteur aliquip Lorem ex labore commodo. Ullamco nisi anim magna duis nulla amet non incididunt elit minim eu veniam.\r\nEiusmod ad laborum quis commodo dolor mollit quis. Irure ad voluptate veniam aliquip cupidatat enim. Ut tempor tempor occaecat sint veniam aute dolor id magna dolor sint Lorem mollit incididunt.\r\n",
+    "author": "Unknown author",
+    "readingTime": 3,
+    "commentsCount": 0,
+    "favoritesCount": 0,
+    "createdOnFormated": "11 February 2017"
   }
 ]
