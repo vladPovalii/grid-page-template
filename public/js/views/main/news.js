@@ -1,6 +1,6 @@
 
-define(["jquery", "underscore", "backbone", "classie", "Modernizr", "collections/news", "views/article"],
-function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
+define(["jquery", "underscore", "backbone", "classie", "Modernizr", "collections/news", "views/gridItem", "views/contentItem"],
+function($, _, Backbone, classie, Modernizr, newsCollection, ItemView, ContentView){
 	var NewsGridView = Backbone.View.extend({
 
 		el: "#theGrid",
@@ -24,14 +24,13 @@ function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
 		},
 
 		onEndTransition: function(el, callback) {
-			var view = this;
 			var onEndCallbackFn = function(ev) {
-				if (view.support.transitions) {
-					if (ev.target != this) return;
-					this.removeEventListener(view.transEndEventName, onEndCallbackFn);
+				if (this.support.transitions) {
+					//if (ev.target != this) return;
+					ev.target.removeEventListener(this.transEndEventName, onEndCallbackFn);
 				}
-				if (callback && typeof callback === "function") { callback.call(view); }
-			};
+				if (callback && typeof callback === "function") {callback.call(this);}
+			}.bind(this);
 			if (this.support.transitions) {
 				el.addEventListener(this.transEndEventName, onEndCallbackFn);
 			}
@@ -68,13 +67,10 @@ function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
 		},
 
 		initialize: function() {
-			// bind all methods
-
+			_.bindAll(this, "loadContent", "hideContent", "noscroll", "getViewport", "onEndTransition", "initEvents");
 			// initialize of selectors
 			this.gridItemsContainer = this.el.querySelector("section.grid");
 			this.contentItemsContainer = this.el.querySelector("section.content");
-			this.gridItems = this.gridItemsContainer.querySelectorAll(".grid__item");
-			this.contentItems = this.contentItemsContainer.querySelectorAll(".content__item");
 			this.closeCtrl = this.contentItemsContainer.querySelector(".close-button");
 			this.transEndEventName = this.transEndEventNames[Modernizr.prefixed("transition")];
 
@@ -87,64 +83,79 @@ function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
 
 		},
 		// Add a single article item to the grid by creating a view for it, and
-		// appending its element.
+		// appending its element to the grid
 		addOne: function(article) {
-			var view = new ArticleView({model: article});
-			$(this.gridItems).last().after(view.render().el);
+			var itemView = new ItemView({model: article}),
+				contentView = new ContentView({model: article}),
+				pos = article.get("index"),
+				parentView = this;
+
+			// rendering grid items
+			this.gridItems = this.gridItemsContainer.querySelectorAll(".grid__item");
+			if (this.gridItems.length) { 
+				$(this.gridItems).last().after(itemView.render().el);
+			} else {
+				$(".top-bar").after(itemView.render().el);
+			}
+
+			// rendering content items 
+			this.contentItems = this.contentItemsContainer.querySelectorAll(".content__item");
+			if (this.contentItems.length) { 
+				$(this.contentItems).last().after(contentView.render().el);
+			} else {
+				$(".scroll-wrap").append(contentView.render().el);
+			}
+
+			itemView.el.addEventListener("click", function(ev) {
+				ev.preventDefault();
+				if(parentView.isAnimating || pos === parentView.current) {
+					return false;
+				}
+				parentView.isAnimating = true;
+				// index of current item
+				parentView.current = pos;
+				// simulate loading time..
+				classie.add(itemView.el, "grid__item--loading");
+				setTimeout(function() {
+					classie.add(itemView.el, "grid__item--animate");
+					// reveal/load content after the last element animates out (todo: wait for the last transition to finish)
+					setTimeout(function() { parentView.loadContent(itemView.el); }, 500);
+				}, 1000);
+			});
+
+			
 		},
 
 		initEvents: function() {
-			var view = this;
-			[].slice.call(this.gridItems).forEach(function(item, pos) {
-				// grid item click event
-				item.addEventListener("click", function(ev) {
-					ev.preventDefault();
-					if(view.isAnimating || view.current === pos) {
-						return false;
-					}
-					view.isAnimating = true;
-					// index of current item
-					view.current = pos;
-					// simulate loading time..
-					classie.add(item, "grid__item--loading");
-					setTimeout(function() {
-						classie.add(item, "grid__item--animate");
-						// reveal/load content after the last element animates out (todo: wait for the last transition to finish)
-						setTimeout(function() { view.loadContent(item); }, 500);
-					}, 1000);
-				});
-			});
-
 			this.closeCtrl.addEventListener("click", function() {
 				// hide content
-				view.hideContent();
-			});
+				this.hideContent();
+			}.bind(this));
 
 			// keyboard esc - hide content
 			document.addEventListener("keydown", function(ev) {
-				if(!view.isAnimating && view.current !== -1) {
+				if(!this.isAnimating && this.current !== -1) {
 					var keyCode = ev.keyCode || ev.which;
 					if(keyCode === 27) {
 						ev.preventDefault();
 						if ("activeElement" in document)
 	    					document.activeElement.blur();
-						view.hideContent();
+						this.hideContent();
 					}
 				}
-			} );
+			}.bind(this));
 
 			// hamburger menu button (mobile) and close cross
 			this.menuCtrl.addEventListener("click", function() {
-				if( !classie.has(view.sidebarEl, "sidebar--open") ) {
-					classie.add(view.sidebarEl, "sidebar--open");	
+				if( !classie.has(this.sidebarEl, "sidebar--open") ) {
+					classie.add(this.sidebarEl, "sidebar--open");	
 				}
-			});
-
+			}.bind(this));
 		},
 
 		loadContent: function(item) {
 			// add expanding element/placeholder 
-			var view = this;
+			//var view = this;
 			var dummy = document.createElement("div");
 			dummy.className = "placeholder";
 
@@ -163,33 +174,33 @@ function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
 
 			setTimeout(function() {
 				// expands the placeholder
-				dummy.style.WebkitTransform = "translate3d(-5px, " + (view.scrollY() - 5) + "px, 0px)";
-				dummy.style.transform = "translate3d(-5px, " + (view.scrollY() - 5) + "px, 0px)";
+				dummy.style.WebkitTransform = "translate3d(-5px, " + (this.scrollY() - 5) + "px, 0px)";
+				dummy.style.transform = "translate3d(-5px, " + (this.scrollY() - 5) + "px, 0px)";
 				// disallow scroll
-				window.addEventListener("scroll", view.noscroll(view));
-			}, 25);
+				window.addEventListener("scroll", this.noscroll(this));
+			}.bind(this), 25);
 
 			this.onEndTransition(dummy, function() {
 				// add transition class 
 				classie.remove(dummy, "placeholder--trans-in");
 				classie.add(dummy, "placeholder--trans-out");
 				// position the content container
-				view.contentItemsContainer.style.top = view.scrollY() + "px";
+				this.contentItemsContainer.style.top = this.scrollY() + "px";
 				// show the main content container
-				classie.add(view.contentItemsContainer, "content--show");
+				classie.add(this.contentItemsContainer, "content--show");
 				// show content item:
-				classie.add(view.contentItems[view.current], "content__item--show");
+				classie.add(this.contentItems[this.current], "content__item--show");
 				// show close control
-				classie.add(view.closeCtrl, "close-button--show");
+				classie.add(this.closeCtrl, "close-button--show");
 				// sets overflow hidden to the body and allows the switch to the content scroll
-				classie.addClass(view.bodyEl, "noscroll");
+				classie.addClass(this.bodyEl, "noscroll");
 
-				view.isAnimating = false;
-			});
+				this.isAnimating = false;
+			}.bind(this));
 		},
 
 		hideContent: function() {
-			var view = this;
+			//var view = this;
 			var gridItem = this.gridItems[this.current], 
 				contentItem = this.contentItems[this.current];
 
@@ -199,35 +210,35 @@ function($, _, Backbone, classie, Modernizr, newsCollection, ArticleView){
 			classie.remove(this.bodyEl, "view-single");
 
 			setTimeout(function() {
-				var dummy = view.gridItemsContainer.querySelector(".placeholder");
+				var dummy = this.gridItemsContainer.querySelector(".placeholder");
 
-				classie.removeClass(view.bodyEl, "noscroll");
+				classie.removeClass(this.bodyEl, "noscroll");
 
-				dummy.style.WebkitTransform = "translate3d(" + gridItem.offsetLeft + "px, " + gridItem.offsetTop + "px, 0px) scale3d(" + gridItem.offsetWidth/view.gridItemsContainer.offsetWidth + "," + gridItem.offsetHeight/view.getViewport("y") + ",1)";
-				dummy.style.transform = "translate3d(" + gridItem.offsetLeft + "px, " + gridItem.offsetTop + "px, 0px) scale3d(" + gridItem.offsetWidth/view.gridItemsContainer.offsetWidth + "," + gridItem.offsetHeight/view.getViewport("y") + ",1)";
+				dummy.style.WebkitTransform = "translate3d(" + gridItem.offsetLeft + "px, " + gridItem.offsetTop + "px, 0px) scale3d(" + gridItem.offsetWidth/this.gridItemsContainer.offsetWidth + "," + gridItem.offsetHeight/this.getViewport("y") + ",1)";
+				dummy.style.transform = "translate3d(" + gridItem.offsetLeft + "px, " + gridItem.offsetTop + "px, 0px) scale3d(" + gridItem.offsetWidth/this.gridItemsContainer.offsetWidth + "," + gridItem.offsetHeight/this.getViewport("y") + ",1)";
 
-				view.onEndTransition(dummy, function() {
+				this.onEndTransition(dummy, function() {
 					// reset content scroll..
 					contentItem.parentNode.scrollTop = 0;
-					view.gridItemsContainer.removeChild(dummy);
+					this.gridItemsContainer.removeChild(dummy);
 					classie.remove(gridItem, "grid__item--loading");
 					classie.remove(gridItem, "grid__item--animate");
-					view.lockScroll = false;
-					window.removeEventListener("scroll", view.noscroll(view));
-				});
+					this.lockScroll = false;
+					window.removeEventListener("scroll", this.noscroll());
+				}.bind(this));
 				
 				// reset current
-				view.current = -1;
-			}, 25);
+				this.current = -1;
+			}.bind(this), 25);
 		},
 
-		noscroll: function(view) {
-			if(!view.lockScroll) {
-				view.lockScroll = true;
-				view.xscroll = view.scrollX();
-				view.yscroll = view.scrollY();
+		noscroll: function() {
+			if(!this.lockScroll) {
+				this.lockScroll = true;
+				this.xscroll = this.scrollX();
+				this.yscroll = this.scrollY();
 			}
-			window.scrollTo(view.xscroll, view.yscroll);
+			window.scrollTo(this.xscroll, this.yscroll);
 		}
 
 	});
