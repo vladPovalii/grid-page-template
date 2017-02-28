@@ -181,6 +181,7 @@ button:focus {
 /* Grid container */
 .grid {
   position: relative;
+  background-color: #fff;
 }
 
 /* Overlay */
